@@ -9,7 +9,10 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 export class VariatorComponent implements OnInit {
 
   @Input() progress: number = 0;
+  @Input() btnClass: string = 'btn btn-primary';
   @Output() resultValue: EventEmitter<number> =  new EventEmitter();
+
+  private _invalidValue: boolean = false;
 
   constructor() { }
 
@@ -31,6 +34,25 @@ export class VariatorComponent implements OnInit {
     }
     this.progress += value;
     this.resultValue.emit(this.progress);
+  }
+
+  changeValue( value: number ) {
+
+    if( value >= 100 ) {
+      this.progress = 100;
+    } else if( value <= 0 ) {
+      this.progress = 0;
+    } else {
+      this.progress = value;
+    }
+
+    this._invalidValue = (value > 100 || value < 0);
+    this.resultValue.emit(this.progress);
+
+  }
+
+  invalidValue(): boolean {
+    return this._invalidValue;
   }
 
 }
