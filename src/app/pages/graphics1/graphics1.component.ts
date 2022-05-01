@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ChartData, ChartEvent, ChartType } from 'chart.js';
 
 @Component({
   selector: 'app-graphics1',
@@ -8,35 +7,34 @@ import { ChartData, ChartEvent, ChartType } from 'chart.js';
   ]
 })
 export class Graphics1Component implements OnInit {
-  // Doughnut
-  public doughnutChartLabels: string[] = [
-    'Ventas',
-    'Por Cobrar',
-    'Inventario'
-  ];
-  public doughnutChartType: ChartType = 'doughnut';
-  public doughnutChartData: ChartData<'doughnut'> = {
-    labels: this.doughnutChartLabels,
-    datasets: [
-      {
-        data: [ 679, 450, 980 ],
-        backgroundColor: [ '#85b5bc', '#5cb85c', '#d9534f' ]
-      },
-    ]
-  };
+
+  private date = new Date();
+
+  private _graphSales = {
+    title: 'Ventas del Dia: ' + this.date.toDateString(),
+    labels: ['Totales', 'Cobradas', 'Transito'],
+    data: [130, 85, 130-85],
+    colors: ['#85b5bc', '#5cb85c', '#d9534f']
+  }
+
+  private _graphInventory = {
+    title: 'Inventario del Dia: ' + this.date.toDateString(),
+    labels: ['A', 'B', 'C', 'D', 'E'],
+    data: [23, 85, 14, 55, 96],
+    colors: ['#85b5bc', '#5cb85c', '#d9534f', '#1ce625', '#99e6c3' ]
+  }
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  // events
-  public chartClicked({ event, active }: { event: ChartEvent, active: {}[] }): void {
-    console.log(event, active);
+  get graphSales() {
+    return {...this._graphSales};
   }
 
-  public chartHovered({ event, active }: { event: ChartEvent, active: {}[] }): void {
-    console.log(event, active);
+  get graphInventory() {
+    return {...this._graphInventory};
   }
 
 }

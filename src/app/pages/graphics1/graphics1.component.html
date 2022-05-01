@@ -1,15 +1,27 @@
 
 <div class="row">
   <div class="col-6">
-    <div class="card">
-      <div class="card-body">
-        <div style="display: block">
-          <canvas baseChart
-            [data]="doughnutChartData"
-            [type]="doughnutChartType">
-          </canvas>
-        </div>
-      </div>
-    </div>
+    <app-gdoughnut
+      [title]="graphSales.title"
+      [labels]="graphSales.labels"
+      [data]="graphSales.data"
+      [bgcolors]="graphSales.colors">
+    </app-gdoughnut>
+  </div>
+  <div class="col-6">
+    <app-gdoughnut
+      [title]="graphInventory.title"
+      [labels]="graphInventory.labels"
+      [data]="graphInventory.data"
+      [bgcolors]="graphInventory.colors">
+    </app-gdoughnut>
+  </div>
+  <div class="col-6">
+    <app-gdoughnut
+      [title]="graphInventory.title"
+      [labels]="graphInventory.labels"
+      [data]="graphInventory.data"
+      [bgcolors]="graphInventory.colors">
+    </app-gdoughnut>
   </div>
 </div>
