@@ -10,7 +10,7 @@ export class RxjsComponent implements OnInit {
 
   constructor() {
 
-    const obs$ = new Observable( observer => {
+    const obs$ = new Observable<number>( observer => {
 
       let i = 0;
 
@@ -27,10 +27,11 @@ export class RxjsComponent implements OnInit {
 
     });
 
-    obs$.subscribe(
-      value => console.log (value ),
-      error => console.warn( error ),
-      () => console.info('Fin')
+    obs$.subscribe( {
+        next: (value) => console.log (value),
+        error: (error) => console.warn( error),
+        complete: () => console.info('Fin')
+      }
     );
 
   }
